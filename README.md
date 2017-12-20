@@ -1,5 +1,7 @@
 # SanitizeRichText
 
+[![Build Status](https://travis-ci.org/komposable/sanitize_rich_text.svg?branch=master)](https://travis-ci.org/komposable/sanitize_rich_text)
+
 ## Installation
 
 ```rb
