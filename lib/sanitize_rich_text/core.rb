@@ -8,25 +8,17 @@ module SanitizeRichText
     class_methods do
       def sanitize_rich_text(attr_name, options = {})
         define_method("#{attr_name}=") do |value|
+          html_elements = ['a', 'strong', 'b', 'br', 'em', 'sub', 'sup', 'ul', 'ol', 'li', 'p', 'u']
+          html_attributes = { 'a' => ['href', 'target'] }
           super(
             Sanitize.fragment(
               value,
-              elements: options.fetch(:elements, nil) || elements,
-              attributes: options.fetch(:attributes, nil) || attributes,
+              elements: options.fetch(:elements, nil) || html_elements,
+              attributes: options.fetch(:attributes, nil) || html_attributes,
             )
           )
         end
       end
-    end
-
-    protected
-
-    def elements
-      ['a', 'strong', 'b', 'br', 'em', 'sub', 'sup', 'ul', 'ol', 'li', 'p', 'u']
-    end
-
-    def attributes
-      { 'a' => ['href', 'target'] }
     end
   end
 end
